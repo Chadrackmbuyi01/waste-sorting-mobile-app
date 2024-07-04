@@ -13,7 +13,7 @@ public class DisposalGuidelineService {
     @Autowired
     private IDisposalGuidelineRepository disposalGuidelineRepository;
 
-    public List<DisposalGuideline> getDisposalGuidelineList(){
+    public List<DisposalGuideline> getAllDisposalGuidelines(){
         return disposalGuidelineRepository.findAll();
     }
 
@@ -25,7 +25,7 @@ public class DisposalGuidelineService {
         return disposalGuidelineRepository.save(disposalGuideline);
     }
 
-    public void deleteDisposalGuideline(Long disposalId){
+    public void deleteDisposalGuidelineById(Long disposalId){
         disposalGuidelineRepository.deleteById(disposalId);
     }
 }

@@ -13,7 +13,7 @@ public class WasteCategoryService {
     @Autowired
     private IWasteCategoryRepository wasteCategoryRepository;
 
-    public List<WasteCategory> getAllWasteCategory() {
+    public List<WasteCategory> getAllWasteCategories() {
         return wasteCategoryRepository.findAll();
     }
 
