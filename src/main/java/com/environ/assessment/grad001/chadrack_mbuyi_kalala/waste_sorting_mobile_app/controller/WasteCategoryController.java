@@ -19,23 +19,23 @@ public class WasteCategoryController {
     @Autowired
     private WasteCategoryService wasteCategoryService;
 
-    @GetMapping
+    @GetMapping("all")
     public List<WasteCategory> getAllCategories() {
         return wasteCategoryService.getAllWasteCategories();
     }
 
-    @GetMapping("/{wasteId}")
+    @GetMapping("read/{wasteId}")
     public ResponseEntity<WasteCategory> getCategoryById(@PathVariable Long wasteId) {
         WasteCategory wasteCategory = wasteCategoryService.getWasteCategoryById(wasteId);
-        return wasteCategory == null ? ResponseEntity.ok(wasteCategory) : ResponseEntity.notFound().build();
+        return wasteCategory == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(wasteCategory);
     }
 
-    @PostMapping
+    @PostMapping("save")
     public ResponseEntity<WasteCategory> createCategory(@Valid @RequestBody WasteCategory wasteCategory) {
         return new ResponseEntity<>(wasteCategoryService.saveWasteCategory(wasteCategory), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{wasteId}")
+    @PutMapping("update/{wasteId}")
     public ResponseEntity<WasteCategory> updateCategory(@PathVariable Long wasteId, @Valid @RequestBody WasteCategory wasteCategory) {
         WasteCategory existingCategory = wasteCategoryService.getWasteCategoryById(wasteId);
         if (existingCategory == null) {
@@ -45,7 +45,7 @@ public class WasteCategoryController {
         return ResponseEntity.ok(wasteCategoryService.saveWasteCategory(wasteCategory));
     }
 
-    @DeleteMapping("/{wasteId}")
+    @DeleteMapping("delete/{wasteId}")
     public ResponseEntity<Void> deleteCategory(@PathVariable Long wasteId) {
         wasteCategoryService.deleteWasteCategoryById(wasteId);
         return ResponseEntity.noContent().build();

@@ -19,23 +19,23 @@ public class RecyclingTipController {
     @Autowired
     private RecyclingTipService recyclingTipService;
 
-    @GetMapping
+    @GetMapping("all")
     public List<RecyclingTip> getAllRecyclingTips(){
         return recyclingTipService.getAllRecyclingTips();
     }
 
-    @GetMapping("/{tipId}")
+    @GetMapping("read/{tipId}")
     public ResponseEntity<RecyclingTip> getTipById(@PathVariable Long tipId){
         RecyclingTip tip = recyclingTipService.getRecyclingTipById(tipId);
         return tip != null ? ResponseEntity.ok(tip) : ResponseEntity.notFound().build();
     }
 
-    @PostMapping
+    @PostMapping("save")
     public ResponseEntity<RecyclingTip> createTip(@Valid @RequestBody RecyclingTip tip){
         return new ResponseEntity<>(recyclingTipService.saveRecyclingTip(tip), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{tipId}")
+    @PutMapping("update/{tipId}")
     public ResponseEntity<RecyclingTip> updateTip(@PathVariable Long tipId, @Valid @RequestBody RecyclingTip tip){
         RecyclingTip existingTip = recyclingTipService.getRecyclingTipById(tipId);
         if (existingTip != null) {
@@ -45,7 +45,7 @@ public class RecyclingTipController {
         return ResponseEntity.ok(recyclingTipService.saveRecyclingTip(tip));
     }
 
-    @DeleteMapping("/{tipId}")
+    @DeleteMapping("delete/{tipId}")
     public ResponseEntity<Void> deleteTip(@PathVariable Long tipId){
         recyclingTipService.deleteRecyclingTipById(tipId);
         return ResponseEntity.noContent().build();

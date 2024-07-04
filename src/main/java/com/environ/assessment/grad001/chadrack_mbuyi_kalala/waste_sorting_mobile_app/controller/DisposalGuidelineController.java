@@ -19,23 +19,23 @@ public class DisposalGuidelineController {
     @Autowired
     private DisposalGuidelineService disposalGuidelineService;
 
-    @GetMapping
+    @GetMapping("all")
     public List<DisposalGuideline> getAllDisposalGuidelines() {
         return disposalGuidelineService.getAllDisposalGuidelines();
     }
 
-    @GetMapping("/{disposalId}")
+    @GetMapping("read/{disposalId}")
     public ResponseEntity<DisposalGuideline> getDisposalGuidelineById(@PathVariable Long disposalId) {
         DisposalGuideline guideline = disposalGuidelineService.getDisposalGuidelineById(disposalId);
         return guideline == null ? ResponseEntity.ok(guideline) : ResponseEntity.notFound().build();
     }
 
-    @PostMapping
+    @PostMapping("save")
     public ResponseEntity<DisposalGuideline> createDisposalGuideline(@Valid @RequestBody DisposalGuideline disposalGuideline) {
         return new ResponseEntity<>(disposalGuidelineService.saveDisposalGuideline(disposalGuideline), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{disposalId}")
+    @PutMapping("update/{disposalId}")
     public ResponseEntity<DisposalGuideline> updateGuideline(@PathVariable Long disposalId, @Valid @RequestBody DisposalGuideline disposalGuideline) {
         DisposalGuideline existingDisposalGuideline = disposalGuidelineService.getDisposalGuidelineById(disposalId);
         if(existingDisposalGuideline == null){
@@ -45,7 +45,7 @@ public class DisposalGuidelineController {
         return ResponseEntity.ok(disposalGuidelineService.saveDisposalGuideline(disposalGuideline));
     }
 
-    @DeleteMapping("/{disposalId}")
+    @DeleteMapping("delete/{disposalId}")
     public ResponseEntity<Void> deleteDisposalGuideline(@PathVariable Long disposalId) {
         disposalGuidelineService.deleteDisposalGuidelineById(disposalId);
         return ResponseEntity.noContent().build();
