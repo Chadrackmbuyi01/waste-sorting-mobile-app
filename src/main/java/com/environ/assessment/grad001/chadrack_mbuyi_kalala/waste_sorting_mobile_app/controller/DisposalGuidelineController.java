@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/guideluine")
+@RequestMapping("/api/guideline")
 @Validated
 public class DisposalGuidelineController {
 
@@ -27,7 +27,7 @@ public class DisposalGuidelineController {
     @GetMapping("read/{disposalId}")
     public ResponseEntity<DisposalGuideline> getDisposalGuidelineById(@PathVariable Long disposalId) {
         DisposalGuideline guideline = disposalGuidelineService.getDisposalGuidelineById(disposalId);
-        return guideline == null ? ResponseEntity.ok(guideline) : ResponseEntity.notFound().build();
+        return guideline == null ?  ResponseEntity.notFound().build() : ResponseEntity.ok(guideline);
     }
 
     @PostMapping("save")

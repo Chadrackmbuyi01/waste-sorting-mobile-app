@@ -27,7 +27,7 @@ public class RecyclingTipController {
     @GetMapping("read/{tipId}")
     public ResponseEntity<RecyclingTip> getTipById(@PathVariable Long tipId){
         RecyclingTip tip = recyclingTipService.getRecyclingTipById(tipId);
-        return tip != null ? ResponseEntity.ok(tip) : ResponseEntity.notFound().build();
+        return tip != null ? ResponseEntity.notFound().build() : ResponseEntity.ok(tip) ;
     }
 
     @PostMapping("save")
