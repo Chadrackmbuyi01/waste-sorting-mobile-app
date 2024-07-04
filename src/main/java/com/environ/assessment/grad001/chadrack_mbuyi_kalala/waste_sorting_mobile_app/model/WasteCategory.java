@@ -1,10 +1,18 @@
 package com.environ.assessment.grad001.chadrack_mbuyi_kalala.waste_sorting_mobile_app.model;
 
-import lombok.Getter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
+@Entity
 public class WasteCategory {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long wasteId;
+    @NotBlank(message = "Name is mandatory")
     private String name;
     private String description;
 
