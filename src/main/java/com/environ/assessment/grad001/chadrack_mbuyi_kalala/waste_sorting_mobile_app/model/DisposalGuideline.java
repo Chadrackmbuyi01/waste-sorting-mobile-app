@@ -17,6 +17,15 @@ public class DisposalGuideline {
     @NotBlank(message = "Guideline is mandatory")
     private String guidelineName;
 
+    public DisposalGuideline(Builder builder) {
+        this.category = builder.category;
+        this.guidelineName = builder.guidelineName;
+    }
+
+    public DisposalGuideline() {
+
+    }
+
     public Long getDisposalId() {
         return disposalId;
     }
@@ -39,5 +48,41 @@ public class DisposalGuideline {
 
     public void setGuidelineName(String guidelineName) {
         this.guidelineName = guidelineName;
+    }
+
+    @Override
+    public String toString() {
+        return "DisposalGuideline{" +
+                "disposalId=" + disposalId +
+                ", category='" + category + '\'' +
+                ", guidelineName='" + guidelineName + '\'' +
+                '}';
+    }
+
+    public static class Builder{
+        private Long disposalId;
+        private String category;
+        private String guidelineName;
+        public Builder setDisposalId(Long disposalId) {
+            this.disposalId = disposalId;
+            return this;
+        }
+        public Builder setCategory(String category) {
+            this.category = category;
+            return this;
+        }
+        public Builder setGuidelineName(String guidelineName) {
+            this.guidelineName = guidelineName;
+            return this;
+        }
+        public Builder copy(DisposalGuideline disposalGuideline){
+            this.category = disposalGuideline.getCategory();
+            this.guidelineName = disposalGuideline.getGuidelineName();
+
+            return this;
+        }
+        public DisposalGuideline build(){
+            return new DisposalGuideline(this);
+        }
     }
 }
