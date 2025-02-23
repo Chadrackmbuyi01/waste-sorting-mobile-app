@@ -48,6 +48,7 @@ public class WasteCategory {
     }
 
     public void setWasteId(Long wasteId) {
+
     }
 
     public static class Builder{

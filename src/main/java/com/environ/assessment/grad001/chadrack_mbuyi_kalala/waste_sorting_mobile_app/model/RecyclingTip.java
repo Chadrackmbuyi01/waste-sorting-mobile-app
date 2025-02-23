@@ -37,6 +37,7 @@ public class RecyclingTip {
     }
 
     public void setTipId(Long tipId) {
+
     }
 
     public static class Builder{
