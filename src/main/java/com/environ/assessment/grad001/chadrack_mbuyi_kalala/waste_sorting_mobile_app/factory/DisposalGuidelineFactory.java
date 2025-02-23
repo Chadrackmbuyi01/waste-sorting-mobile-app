@@ -6,7 +6,6 @@ import com.environ.assessment.grad001.chadrack_mbuyi_kalala.waste_sorting_mobile
 public class DisposalGuidelineFactory {
 
     public static DisposalGuideline build (String category, String guidelineName) {
-
         Helper.checkStringParameter("category", category);
         Helper.checkStringParameter("guidelineName", guidelineName);
         if (Helper.isEmptyOrNull(category) || Helper.isEmptyOrNull(guidelineName))

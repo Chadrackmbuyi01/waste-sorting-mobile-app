@@ -16,27 +16,65 @@ public class WasteCategory {
     private String name;
     private String description;
 
-    public Long getWasteId() {
-        return wasteId;
+    public WasteCategory (Builder builder){
+        this.wasteId = builder.wasteId;
+        this.name = builder.name;
+        this.description = builder.description;
     }
 
-    public void setWasteId(Long wasteId) {
-        this.wasteId = wasteId;
+    public WasteCategory(){
+
+    }
+
+    public Long getWasteId() {
+        return wasteId;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    @Override
+    public String toString() {
+        return "WasteCategory{" +
+                "wasteId=" + wasteId +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
+    public void setWasteId(Long wasteId) {
+    }
+
+    public static class Builder{
+
+        private Long wasteId;
+        private String name;
+        private String description;
+
+        public WasteCategory.Builder setName(String name){
+            this.name = name;
+            return this;
+        }
+
+        public WasteCategory.Builder setDescription(String description){
+            this.description = description;
+            return this;
+        }
+
+        public WasteCategory.Builder copy(WasteCategory wasteCategory){
+            this.wasteId = wasteCategory.getWasteId();
+            this.name = wasteCategory.getName();
+            this.description = wasteCategory.getDescription();
+            return this;
+        }
+
+        public WasteCategory build(){
+            return new WasteCategory(this);
+        }
     }
 }
